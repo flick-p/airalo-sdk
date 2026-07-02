@@ -2,6 +2,9 @@
 
 An unofficial Go client for the [Airalo Partner API](https://developers.partners.airalo.com/) (v2).
 
+> **Disclaimer:** This is an unofficial, community-maintained SDK and is not affiliated with,
+> endorsed by, or supported by Airalo.
+
 ## Install
 
 ```sh
