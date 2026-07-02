@@ -32,6 +32,11 @@ type Config struct {
 	BaseURL string
 	// HTTPClient overrides the underlying HTTP client. Defaults to http.DefaultClient.
 	HTTPClient *http.Client
+	// TokenStore overrides how the OAuth2 access token is cached. Defaults
+	// to an in-memory cache scoped to this Client. Provide a shared store
+	// (see the redistoken subpackage) so multiple replicas of your service
+	// reuse one cached token instead of each fetching their own.
+	TokenStore TokenStore
 }
 
 // Client is an Airalo Partner API client. It is safe for concurrent use.
@@ -62,7 +67,7 @@ func NewClient(cfg Config) (*Client, error) {
 		baseURL:    baseURL,
 		httpClient: httpClient,
 	}
-	c.auth = newTokenSource(c, cfg.ClientID, cfg.ClientSecret)
+	c.auth = newTokenSource(c, cfg.ClientID, cfg.ClientSecret, cfg.TokenStore)
 	return c, nil
 }
 

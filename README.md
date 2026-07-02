@@ -58,8 +58,34 @@ go run ./examples
 ## Authentication
 
 The client obtains an OAuth2 `client_credentials` access token on first use (`POST /v2/token`)
-and caches it in memory, refreshing automatically shortly before it expires. You never need to
-call the token endpoint yourself.
+and caches it, refreshing automatically shortly before it expires. You never need to call the
+token endpoint yourself.
+
+By default the token is cached in memory, scoped to that one `Client`. If you run multiple
+replicas of your service, each replica fetches and caches its own token. Pass `Config.TokenStore`
+to share the cache across replicas instead:
+
+```go
+import (
+	"github.com/airalo/airalo-go"
+	"github.com/airalo/airalo-go/redistoken"
+	"github.com/redis/go-redis/v9"
+)
+
+rdb := redis.NewClient(&redis.Options{Addr: "localhost:6379"})
+client, err := airalo.NewClient(airalo.Config{
+	ClientID:     "your-client-id",
+	ClientSecret: "your-client-secret",
+	TokenStore:   redistoken.New(rdb),
+})
+```
+
+All replicas pointed at the same Redis instance then read/write one shared token, and coordinate
+refreshes so only one replica calls Airalo's token endpoint when it expires. `redistoken` is a
+separate subpackage, so importing the core `airalo` package never pulls in a Redis dependency —
+you only need `github.com/redis/go-redis/v9` if you import `redistoken`. `Config.TokenStore` also
+accepts any custom implementation of the `airalo.TokenStore` interface if you want a different
+backend.
 
 ## Error handling
 
