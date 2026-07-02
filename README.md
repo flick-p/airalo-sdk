@@ -1,9 +1,6 @@
 # airalo-go
 
-An unofficial Go client for the [Airalo Partner API](https://partners-api.airalo.com) (v2).
-
-Generated from `Airalo Partner API documentation (1).json` (a Postman collection export). All
-33 documented REST endpoints are covered.
+An unofficial Go client for the [Airalo Partner API](https://developers.partners.airalo.com/) (v2).
 
 ## Install
 
