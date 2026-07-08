@@ -16,7 +16,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/airalo/airalo-go"
+	"github.com/flick-p/airalo-sdk"
 )
 
 func main() {

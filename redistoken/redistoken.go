@@ -11,7 +11,7 @@ import (
 	"errors"
 	"time"
 
-	airalo "github.com/airalo/airalo-go"
+	airalo "github.com/flick-p/airalo-sdk"
 	"github.com/redis/go-redis/v9"
 )
 

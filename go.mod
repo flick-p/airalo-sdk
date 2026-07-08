@@ -1,4 +1,4 @@
-module github.com/airalo/airalo-go
+module github.com/flick-p/airalo-sdk
 
 go 1.24.1
 

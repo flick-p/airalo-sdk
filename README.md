@@ -8,7 +8,7 @@ An unofficial Go client for the [Airalo Partner API](https://developers.partners
 ## Install
 
 ```sh
-go get github.com/airalo/airalo-go
+go get github.com/flick-p/airalo-sdk
 ```
 
 ## Quick start
@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/airalo/airalo-go"
+	"github.com/flick-p/airalo-sdk"
 )
 
 func main() {
@@ -67,8 +67,8 @@ to share the cache across replicas instead:
 
 ```go
 import (
-	"github.com/airalo/airalo-go"
-	"github.com/airalo/airalo-go/redistoken"
+	"github.com/flick-p/airalo-sdk"
+	"github.com/flick-p/airalo-sdk/redistoken"
 	"github.com/redis/go-redis/v9"
 )
 
